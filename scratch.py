@@ -1,7 +1,12 @@
 import scratchattach as sa
 import csv
 import os
-import keyboard
+
+try:
+    sa.get_project(510186917).raw_json()
+except:
+    print("Error: Cannot get response against known shared project with ID 510186917")
+    quit()
 
 file_path = "/scratchdata.csv"
 
@@ -25,11 +30,10 @@ else:
 
     id = 1026136771 # initial project ID if CSV doesn't exist
 
-print("press e to stop the program")
-while not(keyboard.is_pressed("a")):
+while True:
     with open(file_path, "a", newline="") as file:
         writer = csv.writer(file)
-        for v in range(200): # save in batches of 200 in case something goes wrong
+        for v in range(300): # save in batches of 300 in case something goes wrong
             id -= 1
             opcode_tally = [0] * len(opcodes)
             try: # some scratch 2.0 projects can't be opened with scratchattatch
