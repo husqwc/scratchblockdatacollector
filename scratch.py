@@ -36,8 +36,9 @@ while True:
         for v in range(300): # save in batches of 300 in case something goes wrong
             id -= 1
             opcode_tally = [0] * len(opcodes)
-            try: # some scratch 2.0 projects can't be opened with scratchattatch
+            try: # see if project is shared
                 current_json = sa.get_project(id).raw_json()
+                current_json["targets"] # check to see if it's a a 2.0 file
             except:
                 pass
             else:
